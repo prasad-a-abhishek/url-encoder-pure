@@ -12,3 +12,9 @@
 | AC-8 | Invalid `%HH` raises `ValueError` | `test_ac8_invalid_valueerror` |
 
 All 8 ACs covered. 8/8.
+
+## QA Findings & Fixes
+
+| Finding | Severity | Source | Remediation | Fix Card | Status |
+|---------|----------|--------|-------------|----------|--------|
+| BENCH-01 | honest-pillar | qa t_bef08a96 | README §"Performance" + remove benchmarks table+replication line | fix1 aacd39c | DONE |
