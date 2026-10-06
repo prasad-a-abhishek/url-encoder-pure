@@ -7,8 +7,13 @@ __all__ = ["quote", "quote_plus", "unquote", "unquote_plus"]
 _UNRESERVED = frozenset(b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~")
 
 
-def quote(s: bytes | str, safe: bytes | str = b"") -> str:
-    """RFC 3986 percent-encoder: preserves unreserved set, encodes everything else as %HH."""
+def quote(s: bytes | str | None, safe: bytes | str = b"") -> str | None:
+    """RFC 3986 percent-encoder: preserves unreserved set, encodes everything else as %HH.
+
+    Returns None if s is None (Invariant 21: Total Public API Exception Safety).
+    """
+    if s is None:
+        return None
     if isinstance(s, str):
         s = s.encode("utf-8")
     if isinstance(safe, str):
@@ -24,8 +29,13 @@ def quote(s: bytes | str, safe: bytes | str = b"") -> str:
     return "".join(out)
 
 
-def quote_plus(s: bytes | str, safe: bytes | str = b"") -> str:
-    """Form encoder (RFC 1866 / WHATWG): space -> '+', rest same as quote."""
+def quote_plus(s: bytes | str | None, safe: bytes | str = b"") -> str | None:
+    """Form encoder (RFC 1866 / WHATWG): space -> '+', rest same as quote.
+
+    Returns None if s is None (Invariant 21: Total Public API Exception Safety).
+    """
+    if s is None:
+        return None
     if isinstance(s, str):
         s = s.encode("utf-8")
     if isinstance(safe, str):

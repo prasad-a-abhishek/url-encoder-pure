@@ -88,3 +88,14 @@ def test_boundary_all_00():              assert quote(b"\x00") == "%00"
 @pytest.mark.parametrize("s", [b"abc", b"a b", b"~", b"hello world"])
 def test_bytes_str_parity(s):
     assert quote(s) == quote(s.decode())
+
+
+# ── INV-21: Total API Exception Safety ────────────────────────────────────
+def test_quote_none_returns_none():
+    """INV-21: quote(None) returns None instead of raising TypeError."""
+    assert quote(None) is None
+
+
+def test_quote_plus_none_returns_none():
+    """INV-21: quote_plus(None) returns None instead of raising TypeError."""
+    assert quote_plus(None) is None
