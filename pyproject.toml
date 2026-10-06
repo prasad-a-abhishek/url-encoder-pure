@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "url-encoder-pure"
+version = "0.1.0"
+description = "Pure-stdlib URL percent-encoding (RFC 3986 + application/x-www-form-urlencoded), PEP-561 typed"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [{name = "prasad-a-abhishek"}]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"url_encoder_pure" = ["py.typed"]

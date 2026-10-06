@@ -1,0 +1,1 @@
+/root/projects/.pre-push-gate.sh
