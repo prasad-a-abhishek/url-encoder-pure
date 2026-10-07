@@ -166,20 +166,28 @@ def runner(rng, logger):
         return
 
     # Sanity: result length should be >= input length (everything is at
-    # least 1 char when encoded), and never crazy longer (3x upper bound
-    # for %HH expansion).
+    # least 1 char when encoded). Upper bound = 3x the UTF-8 byte length
+    # (each byte becomes %HH = 3 chars). For str inputs use the encoded
+    # byte length because non-BMP chars expand 3 bytes per char in UTF-8.
+    # Note: stray surrogate halves raise UnicodeError before this point
+    # (handled in the except block above), so the only str inputs that
+    # reach here have well-formed UTF-8.
     if isinstance(s, (bytes, str)):
-        s_len = len(s)
-        if len(result) < s_len:
+        if isinstance(s, str):
+            byte_len = len(s.encode("utf-8"))
+        else:
+            byte_len = len(s)
+        char_len = len(s)
+        if len(result) < char_len:
             write_crash("quote", logger.completed, in_repr, "postcondition",
-                        f"result shorter than input: in={s_len} out={len(result)}",
+                        f"result shorter than input: in_chars={char_len} out={len(result)}",
                         binary=raw_bytes)
             logger.record("crash", iter=logger.completed, input=in_repr,
-                          reason="output shorter than input")
+                          reason="output shorter than input (chars)")
             return
-        if len(result) > 3 * s_len + 16:
+        if len(result) > 3 * byte_len + 16:
             write_crash("quote", logger.completed, in_repr, "postcondition",
-                        f"output suspiciously long: in={s_len} out={len(result)}",
+                        f"output suspiciously long: in_bytes={byte_len} out={len(result)}",
                         binary=raw_bytes)
             logger.record("crash", iter=logger.completed, input=in_repr,
                           reason="output length explosion")

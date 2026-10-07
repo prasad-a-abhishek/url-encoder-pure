@@ -1,1 +1,94 @@
-{}
+{
+  "quote": {
+    "iters": 5000,
+    "seed": 42,
+    "elapsed_s": 6.736,
+    "counts": {
+      "crashes": 0,
+      "hangs": 0,
+      "unexpected": 0,
+      "value_errors": 0,
+      "unicode_errors": 851,
+      "type_errors": 0,
+      "completed": 3898,
+      "skipped": 0,
+      "none_handled": 251
+    },
+    "crash_files": {
+      "unexpected": 0,
+      "postcondition": 0,
+      "hang": 0,
+      "total": 0
+    },
+    "log_path": "cycle_185/adversary/fuzz/logs/run_quote_20261007T000451Z_seed42_n5000.log"
+  },
+  "quote_plus": {
+    "iters": 5000,
+    "seed": 42,
+    "elapsed_s": 6.915,
+    "counts": {
+      "crashes": 0,
+      "hangs": 0,
+      "unexpected": 0,
+      "value_errors": 0,
+      "unicode_errors": 814,
+      "type_errors": 0,
+      "completed": 3928,
+      "skipped": 0,
+      "none_handled": 258
+    },
+    "crash_files": {
+      "unexpected": 0,
+      "postcondition": 0,
+      "hang": 0,
+      "total": 0
+    },
+    "log_path": "cycle_185/adversary/fuzz/logs/run_quote_plus_20261007T000458Z_seed42_n5000.log"
+  },
+  "unquote": {
+    "iters": 5000,
+    "seed": 42,
+    "elapsed_s": 0.447,
+    "counts": {
+      "crashes": 0,
+      "hangs": 0,
+      "unexpected": 0,
+      "value_errors": 2378,
+      "unicode_errors": 0,
+      "type_errors": 1139,
+      "completed": 1483,
+      "skipped": 0,
+      "none_handled": 0
+    },
+    "crash_files": {
+      "unexpected": 0,
+      "postcondition": 0,
+      "hang": 0,
+      "total": 0
+    },
+    "log_path": "cycle_185/adversary/fuzz/logs/run_unquote_20261007T000505Z_seed42_n5000.log"
+  },
+  "unquote_plus": {
+    "iters": 5000,
+    "seed": 42,
+    "elapsed_s": 0.725,
+    "counts": {
+      "crashes": 0,
+      "hangs": 0,
+      "unexpected": 248,
+      "value_errors": 2225,
+      "unicode_errors": 0,
+      "type_errors": 694,
+      "completed": 1833,
+      "skipped": 0,
+      "none_handled": 0
+    },
+    "crash_files": {
+      "unexpected": 219,
+      "postcondition": 0,
+      "hang": 0,
+      "total": 219
+    },
+    "log_path": "cycle_185/adversary/fuzz/logs/run_unquote_plus_20261007T000505Z_seed42_n5000.log"
+  }
+}

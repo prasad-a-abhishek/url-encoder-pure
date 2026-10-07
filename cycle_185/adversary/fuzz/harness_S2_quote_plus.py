@@ -156,19 +156,23 @@ def runner(rng, logger):
                       reason="space in output (should be '+')")
         return
 
-    # Length sanity (same bounds as S1).
+    # Length sanity (same bounds as S1, fixed for non-BMP str inputs).
     if isinstance(s, (bytes, str)):
-        s_len = len(s)
-        if len(result) < s_len:
+        if isinstance(s, str):
+            byte_len = len(s.encode("utf-8"))
+        else:
+            byte_len = len(s)
+        char_len = len(s)
+        if len(result) < char_len:
             write_crash("quote_plus", logger.completed, in_repr, "postcondition",
-                        f"result shorter than input: in={s_len} out={len(result)}",
+                        f"result shorter than input: in_chars={char_len} out={len(result)}",
                         binary=raw_bytes)
             logger.record("crash", iter=logger.completed, input=in_repr,
-                          reason="output shorter than input")
+                          reason="output shorter than input (chars)")
             return
-        if len(result) > 3 * s_len + 16:
+        if len(result) > 3 * byte_len + 16:
             write_crash("quote_plus", logger.completed, in_repr, "postcondition",
-                        f"output suspiciously long: in={s_len} out={len(result)}",
+                        f"output suspiciously long: in_bytes={byte_len} out={len(result)}",
                         binary=raw_bytes)
             logger.record("crash", iter=logger.completed, input=in_repr,
                           reason="output length explosion")
