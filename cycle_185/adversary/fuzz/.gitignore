@@ -1,0 +1,4 @@
+# Cycle 185 fuzz artifacts
+crashes/
+logs/
+corpus/
