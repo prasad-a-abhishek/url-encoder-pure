@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/root/.worktrees/t_cycle185-adversary-01/cycle_185/adversary/fuzz/findings/S4_BUGSAFE_AttributeError_None/repro.py", line 54, in <module>
+    unquote_plus(None)  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^
+  File "/root/projects/url-encoder-pure/src/url_encoder_pure/__init__.py", line 82, in unquote_plus
+    return unquote(s.replace("+", " "))
+                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'replace'
